@@ -1,0 +1,1 @@
+[![Sales Management System CI | © 2026](https://github.com/minhngoc131106-prog/SalesManagementSystem-CI/actions/workflows/maven.yml/badge.svg)](https://github.com/minhngoc131106-prog/SalesManagementSystem-CI/actions/workflows/maven.yml)
