@@ -1,0 +1,35 @@
+# File cấu hình CI cho dự án Maven | © 2026
+name: Sales Management System CI | © 2026
+
+on:
+  push:
+    branches: [ "main" ]    # Chạy CI mỗi khi ai đó push code lên nhánh main
+  pull_request:
+    branches: [ "main" ]    # Chạy CI khi có ai gửi Pull Request vào nhánh main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Sử dụng server ảo Ubuntu trên GitHub
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4   # Lấy code từ repo thảy vào máy ảo GitHub
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3 # Cấu hình phiên bản Java 17 trên server
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven             # Cache dependencies để tăng tốc các lần build sau
+
+    - name: Build and Run Unit Tests with Maven
+      run: mvn -B package --file pom.xml   # Gọi lệnh mvn: tự động đóng gói & CHẠY UNIT TEST
+
+    - name: Distribute jar-war file
+      run: mkdir staging && cp target/*.jar staging  # Gom file sản phẩm .jar vào thư mục staging
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4   # Tạo đường link cho phép tải file build .jar
+      with:
+        name: 1.0-SNAPSHOT
+        path: staging
