@@ -56,7 +56,7 @@ public class SalesService {
             return "REGULAR";
         } else if (total < 5000) {
             return "SILVER";
-        } else if (total <= 10000) { // Đã sửa: < 10000 thay vì <= 10000
+        } else if (total < 10000) { // Đã sửa: < 10000 thay vì <= 10000
             return "GOLD";
         } else {
             return "VIP";
